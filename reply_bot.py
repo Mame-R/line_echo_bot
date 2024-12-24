@@ -119,8 +119,7 @@ def generate_response(from_user, text):
         res.append(TextMessage(text="ハイブリッド車、おすすめです！\n・トヨタ　プリウス\n・日産　ノート/オーラ\n・トヨタ　アクア\n\n等が有名ですが、"
                                     "各社ラインナップが豊富ですので、ご自身のお好みのお車に設定があるかご確認いただくのもよいかもしれません。"))
 
-    res = [TextMessage()]
-    if "トヨタ" in text or "TOYOTA" in text:
+    elif "トヨタ" in text or "TOYOTA" in text:
         res.append(TextMessage(text="トヨタ自動車のラインナップはこちらからご覧いただけます▽\nhttps://toyota.jp/carlineup/"))
     elif "日産" in text or "Nissan" in text or "ニッサン" in text:
         res.append(TextMessage(text="日産自動車のラインナップはこちらからご覧いただけます▽\nhttps://www.nissan.co.jp/CARLINEUP/"))
@@ -165,6 +164,7 @@ def handle_text_message(event):
             profile = line_bot_api.get_profile(event.source.user_id)
             # 返信メッセージを生成
             res = generate_response(profile.display_name, text)
+
         else:
             # ユーザー情報が取得できなかった場合
             # fmt: off
